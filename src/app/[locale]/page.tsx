@@ -1,10 +1,77 @@
+"use client";
+
 import {useTranslations} from 'next-intl';
+import { useEffect } from 'react';
+import * as THREE from 'three';
 
 export default function Home() {
   const t = useTranslations('HomePage');
+  useEffect(() => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({
+      canvas: document.querySelector('#bg') as HTMLCanvasElement,
+    })
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.setZ(30);
+  
+
+    const geometry = new THREE.TorusGeometry(5, 2, 8, 50);
+    const material = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true })
+    const torus = new THREE.Mesh(geometry, material);
+    scene.add(torus);
+    let direction = 1
+    const maxZ = 5
+    const minZ = -5
+
+    let speed = 0.2
+    const maxX = 50
+    const minX = -50
+
+    let velocityY = 0.2
+    let gravity = -0.02
+    let floorY = -5
+
+    let coloring = 0
+
+    function animate() {
+      requestAnimationFrame(animate);
+      // torus.rotation.x += 0.005;
+      // torus.rotation.y += 0.002;
+      torus.rotation.z += 0.01;
+      coloring += 1
+      if (coloring > 360) coloring = 0;
+      torus.material.color.setHSL(coloring / 360, 1, 0.5)
+      // torus.scale.setY(0.1);
+      torus.translateX(0.01);
+      // torus.translateX(0.02 * direction);
+      // if (torus.position.x >= maxX || torus.position.x <= minX) {
+      //   direction *= -1
+      // }
+      // torus.translateX(speed)
+      // if (torus.position.x > maxX) {
+      //   torus.position.x = minX
+      // }
+
+      // Apply Gravity
+      velocityY += gravity
+
+      torus.position.y += velocityY
+      if (torus.position.y <= floorY) {
+        velocityY *= -1
+      }
+      
+      
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  }, [])
+
   return (
     <> 
-      <div className="sketchfab-embed-wrapper"> <iframe title="Fractal Define 7 XL Tempered Glass" frameBorder="0" allowFullScreen  allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking="true" execution-while-out-of-viewport="true" execution-while-not-rendered="true" web-share="true" src="https://sketchfab.com/models/7c89802dbaa0490587ff165aace4debe/embed?autospin=1&autostart=1&transparent=1"> </iframe> <p style={{ fontSize: 13, fontWeight: 'normal', margin: 5, color: '#4A4A4A'}}> <a href="https://sketchfab.com/3d-models/fractal-define-7-xl-tempered-glass-7c89802dbaa0490587ff165aace4debe?utm_medium=embed&utm_campaign=share-popup&utm_content=7c89802dbaa0490587ff165aace4debe" target="_blank" rel="nofollow" style={{fontWeight: 'bold', color: '#1CAAD9'}}> Fractal Define 7 XL Tempered Glass </a> by <a href="https://sketchfab.com/digitalrazor3d?utm_medium=embed&utm_campaign=share-popup&utm_content=7c89802dbaa0490587ff165aace4debe" target="_blank" rel="nofollow" style={{fontWeight: 'bold', color: '#1CAAD9'}}> digitalrazor3d </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=7c89802dbaa0490587ff165aace4debe" target="_blank" rel="nofollow" style={{fontWeight: 'bold', color: '#1CAAD9'}}>Sketchfab</a></p></div>
+      <canvas id='bg'></canvas>
     </>
   );
 }
