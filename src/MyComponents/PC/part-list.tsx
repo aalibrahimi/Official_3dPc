@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { getParts, Part, PartType } from "@/lib/types"
 
 interface PartsListProps {
-  partType: PartType
+  partType: keyof typeof PartType
   onSelectPart: (part: Part) => void
   selectedPart: Part | null
   disabled: boolean

@@ -18,8 +18,9 @@ export default function Home() {
   })
 
   return (
-    <> 
-    <PartList partType={PartType.CPU} onSelectPart={function (part: Part): void {
+    <>
+    {/* For "onSelectedPart", just input the part's ID */}
+    <PartList partType={PartType.CPU} onSelectPart={function (part): void {
         throw new Error("Function not implemented.");
       } } selectedPart={null} disabled={false} />
     </>
