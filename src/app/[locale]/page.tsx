@@ -1,7 +1,7 @@
 "use client";
 
 import { PartType, Part } from "@/lib/types";
-import PartList from "@/MyComponents/part-list";
+import PartList from "@/MyComponents/PC/part-list";
 import { useState } from "react";
 
 
