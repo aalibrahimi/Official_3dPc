@@ -16,6 +16,8 @@ interface PCBuilderProps {
   }
 }
 
+//  RIGHT NOW IM CREATING THE PLACEHOLDERS ESSENTIALY LATER ON TO BE REPLACEDD BY 3D MODELS WE FIND OR DESIGN
+//  WORKING ON THE GLIDING ANIMATION BY SO FAR, ITS NOT VERY GOODD, SO GOTTA FOCUS ON THAAT
 // Main component that sets up our 3D scene with a PC case
 export default function PCBuilder({ selectedParts, activeAnimation }: PCBuilderProps) {
   return (
