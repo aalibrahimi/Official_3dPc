@@ -50,7 +50,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80 text-foreground">
       <header className="container mx-auto py-6">
         <h1 className="text-4xl font-bold tracking-tight">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
             Quantum PC Builder
           </span>
         </h1>
@@ -59,7 +59,7 @@ export default function Home() {
 
       <main className="container mx-auto py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <Card className="lg:col-span-2 overflow-hidden border border-purple-500/20 bg-black/40 backdrop-blur-sm">
+          <Card className="lg:col-span-2 overflow-hidden border border-red-500/20 bg-black/40 backdrop-blur-sm">
             <CardContent className="p-0">
               <div className="h-[600px] w-full">
                 <PCBuilder selectedParts={selectedParts} activeAnimation={activeAnimation} />
@@ -68,7 +68,7 @@ export default function Home() {
           </Card>
 
           <div className="space-y-4">
-            <Card className="border border-purple-500/20 bg-black/40 backdrop-blur-sm">
+            <Card className="border border-red-500/20 bg-black/40 backdrop-blur-sm">
               <CardContent className="p-4">
                 <Tabs defaultValue="cpu" className="w-full">
                   <TabsList className="grid grid-cols-3 mb-4">
@@ -104,7 +104,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="border border-purple-500/20 bg-black/40 backdrop-blur-sm">
+            <Card className="border border-red-500/20 bg-black/40 backdrop-blur-sm">
               <CardContent className="p-4">
                 <h3 className="text-lg font-medium mb-2">Selected Components</h3>
                 <div className="space-y-2">
@@ -115,7 +115,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <Button className="w-full mt-4 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600">
+                <Button className="w-full mt-4 bg-gradient-to-r from-red-500 via-red-700 to-red-900 hover:from-red-800 hover:to-red-950">
                   Complete Build
                 </Button>
               </CardContent>
