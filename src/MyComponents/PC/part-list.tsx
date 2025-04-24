@@ -40,7 +40,7 @@ export default function PartList({ partType, onSelectPart, selectedPart, disable
 
                     <div className="flex flex-col items-end gap-2">
                         
-                        <Badge className="bg-green-950/1 text-green-500 outline">${part.specs}</Badge>
+                        <Badge className="bg-red-950/1 text-red-500 outline">${part.specs}</Badge>
                         <p className="flex  justify-end">${part.price}</p>
                         <Button 
                         size="sm"
