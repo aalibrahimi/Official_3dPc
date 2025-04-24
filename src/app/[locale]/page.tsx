@@ -1,5 +1,7 @@
 "use client";
 
+import { PartType, Part } from "@/lib/types";
+import PartList from "@/MyComponents/part-list";
 import { useState } from "react";
 
 
@@ -17,7 +19,9 @@ export default function Home() {
 
   return (
     <> 
-    
+    <PartList partType={PartType.CPU} onSelectPart={function (part: Part): void {
+        throw new Error("Function not implemented.");
+      } } selectedPart={null} disabled={false} />
     </>
   );
 }
