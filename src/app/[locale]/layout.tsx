@@ -6,6 +6,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getLangDir } from "rtl-detect";
+import { HeroHeader } from "@/MyComponents/tallmarky/hero5-header";
 
 export default async function LocaleLayout({
   children,
@@ -33,7 +34,7 @@ export default async function LocaleLayout({
             disableTransitionOnChange
           >
             <div className="flex min-h-screen flex-col">
-              <Navbar />
+             <HeroHeader />
               <main className="flex-1 w-full">{children}</main>
               <Footer />
             </div>

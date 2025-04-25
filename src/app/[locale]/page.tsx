@@ -7,12 +7,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import  PartList  from "@/MyComponents/PC/part-list"
 import { PartType, type Part } from "@/lib/types"
 import PCBuilder from "@/MyComponents/PC/pc-builder"
+import HeroSection from "@/MyComponents/tallmarky/hero-section"
 
 export default function Home() {
   
     return(
-      <div className="">
-        hi
-      </div>
+    <>
+    <HeroSection />
+    </>
     )
 }
