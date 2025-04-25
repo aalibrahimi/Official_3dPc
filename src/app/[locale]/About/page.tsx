@@ -105,7 +105,7 @@ const testimonialChunks = chunkArray(testimonials, Math.ceil(testimonials.length
 
 export default function WallOfLoveSection() {
   return (
-    <section className="bg-gradient-to-b from-black via-black to-red-900">
+    <section className="bg-gradient-to-b from-black via-black to-red-950/60">
       <div className="py-16 md:py-32">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
@@ -116,7 +116,7 @@ export default function WallOfLoveSection() {
             {testimonialChunks.map((chunk, chunkIndex) => (
               <div key={chunkIndex} className="space-y-3 ">
                 {chunk.map(({ name, role, quote, image }, index) => (
-                  <Card key={index} className="bg-red-950/60 border-red-950">
+                  <Card key={index} className="bg-black border-red-950">
                     <CardContent className="grid grid-cols-[auto_1fr] gap-3 pt-6 ">
                       <Avatar className="size-9">
                         <AvatarImage alt={name} src={image} loading="lazy" width="120" height="120" />
