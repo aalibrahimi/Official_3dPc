@@ -51,9 +51,9 @@ const testimonials: Testimonial[] = [
       "Hasan is redefining the standard of web design, with these blocks it provides an easy and efficient way for those who love beauty but may lack the time to implement it. I can only recommend this incredible wonder.",
   },
   {
-    name: "Oketa Fred",
-    role: "Fullstack Developer",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    name: "Hanif",
+    role: "Fullstack Developer and COO At CODEWITHALI",
+    image: "/codewithali.png",
     quote:
       "I absolutely love Hasan! The component blocks are beautifully designed and easy to use, which makes creating a great-looking website a breeze.",
   },
@@ -65,9 +65,9 @@ const testimonials: Testimonial[] = [
       "Using TailsUI has been like unlocking a secret design superpower. It's the perfect fusion of simplicity and versatility, enabling us to create UIs that are as stunning as they are user-friendly.",
   },
   {
-    name: "Joseph Kitheka",
-    role: "Fullstack Developer",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
+    name: "Ali",
+    role: "Fullstack Developer and CEO At Codewithali",
+    image: "/codewithali.png",
     quote:
       "Hasan has transformed the way I develop web applications. Their extensive collection of UI components, blocks, and templates has significantly accelerated my workflow. The flexibility to customize every aspect allows me to create unique user experiences. Hasan is a game-changer for modern web development!",
   },
