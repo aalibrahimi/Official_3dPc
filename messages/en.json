@@ -16,7 +16,7 @@
     "labelLang": "Language",
     "routes": {
       "home": "Home",
-      "about": "About",
+      "about": "PC Builder",
       "contact": "Contact",
       "features": {
         "title": "Features",

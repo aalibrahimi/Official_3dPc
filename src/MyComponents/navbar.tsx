@@ -32,7 +32,7 @@ export function Navbar(): React.ReactElement {
     },
     {
       title: t('routes.about'),
-      href: "/about",
+      href: "/PCBuilder",
     },
     {
       title: t('routes.features.title'),
