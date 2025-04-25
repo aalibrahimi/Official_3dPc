@@ -48,7 +48,7 @@ export default function Home() {
     
        
           return (
-            <div className="min-h-screen bg-gradient-to-b from-background to-background/80 text-foreground">
+            <div className="min-h-screen bg-gradient-to-b mt-20 from-black via-black to-black text-foreground">
               <header className="container mx-auto py-6">
                 <h1 className="text-4xl font-bold tracking-tight">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
@@ -69,11 +69,11 @@ export default function Home() {
                   </Card>
         
                   <div className="space-y-4">
-                    <Card className="border border-red-500/20 bg-black/40 backdrop-blur-sm">
+                    <Card className="border border-red-500/20 bg-black backdrop-blur-sm">
                       <CardContent className="p-4">
                         {/* cpu */}
-                        <Tabs defaultValue="cpu" className="w-full">
-                          <TabsList className="grid grid-cols-3 mb-4">
+                        <Tabs defaultValue="cpu" className="w-full ">
+                          <TabsList className="grid grid-cols-5 mb-4 bg-black">
                             <TabsTrigger value="cpu">CPU</TabsTrigger>
                             <TabsTrigger value="gpu">GPU</TabsTrigger>
                             <TabsTrigger value="ram">RAM</TabsTrigger>
