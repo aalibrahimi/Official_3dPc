@@ -6,6 +6,7 @@ import { HeroHeader } from "./hero5-header"
 import { AnimatedGroup } from "./animated-group"
 import { TextEffect } from "./text-effect"
 import LogoCloud from "./logo-cloud"
+import FeaturesSection from "./feature-section"
 
 
 const transitionVariants = {
@@ -187,6 +188,8 @@ export default function HeroSection() {
             </AnimatedGroup> */}
           </div>
         </section>
+        {/* features */}
+        <FeaturesSection />
        {/* logoo   cloud */}
        <LogoCloud />
       </main>
