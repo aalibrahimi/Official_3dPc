@@ -9,7 +9,7 @@ import { Logo } from "./logo"
 import Image from "next/image"
 
 const menuItems = [
-  { name: "Home", href: "/home" },
+  { name: "Home", href: "/" },
   { name: "PCBuilder", href: "/PCBuilder" },
   { name: "Pricing", href: "#link" },
   { name: "About", href: "/About" },
@@ -93,9 +93,9 @@ export const HeroHeader = () => {
                     <span>Sign Up</span>
                   </Link>
                 </Button>
-                <Button asChild size="sm" className={cn(isScrolled ? "lg:inline-flex" : "hidden")}>
+                <Button asChild size="sm" className={cn(isScrolled ? "lg:inline-flex bg-blue hover:bg-black/20" : "hidden")}>
                   <Link href="#">
-                    <span>Get Started</span>
+                    <span className="text-white">Get Started</span>
                   </Link>
                 </Button>
               </div>

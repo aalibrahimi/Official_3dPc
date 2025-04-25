@@ -172,3 +172,8 @@ canvas {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(205, 39, 78, 0.8);
 }
+
+::selection {
+  background-color: none;
+  color: rgb(94, 3, 3);
+}
