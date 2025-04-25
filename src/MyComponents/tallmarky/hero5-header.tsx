@@ -12,7 +12,7 @@ const menuItems = [
   { name: "Home", href: "/home" },
   { name: "PCBuilder", href: "/PCBuilder" },
   { name: "Pricing", href: "#link" },
-  { name: "About", href: "#link" },
+  { name: "About", href: "/About" },
 ]
 
 export const HeroHeader = () => {
