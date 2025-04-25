@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getLangDir } from "rtl-detect";
 import { HeroHeader } from "@/MyComponents/tallmarky/hero5-header";
+import FooterSection from "@/MyComponents/tallmarky/FooterTail";
 
 export default async function LocaleLayout({
   children,
@@ -36,7 +37,9 @@ export default async function LocaleLayout({
             <div className="flex min-h-screen flex-col">
              <HeroHeader />
               <main className="flex-1 w-full">{children}</main>
-              <Footer />
+              {/* trying out FooterTail (to be customizedd) */}
+              <FooterSection />
+              {/* <Footer /> */}
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>

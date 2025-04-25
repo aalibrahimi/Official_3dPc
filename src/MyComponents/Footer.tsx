@@ -42,6 +42,7 @@ export function Footer(): React.ReactElement {
         { name: t('nav.legal.links.3'), href: "/cookies" },
       ],
     },
+    
   ];
 
   return (
