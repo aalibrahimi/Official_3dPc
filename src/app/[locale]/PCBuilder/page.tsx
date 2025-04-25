@@ -71,11 +71,14 @@ export default function Home() {
                   <div className="space-y-4">
                     <Card className="border border-red-500/20 bg-black/40 backdrop-blur-sm">
                       <CardContent className="p-4">
+                        {/* cpu */}
                         <Tabs defaultValue="cpu" className="w-full">
                           <TabsList className="grid grid-cols-3 mb-4">
                             <TabsTrigger value="cpu">CPU</TabsTrigger>
                             <TabsTrigger value="gpu">GPU</TabsTrigger>
                             <TabsTrigger value="ram">RAM</TabsTrigger>
+                            <TabsTrigger value="motherboard">MOTHERBOARD</TabsTrigger>
+                            <TabsTrigger value="cooler">COOLER</TabsTrigger>
                           </TabsList>
                           <TabsContent value="cpu">
                             <PartList
@@ -85,6 +88,7 @@ export default function Home() {
                               disabled={activeAnimation.isAnimating}
                             />
                           </TabsContent>
+                          {/* gpu */}
                           <TabsContent value="gpu">
                             <PartList
                               partType={PartType.GPU}
@@ -93,6 +97,7 @@ export default function Home() {
                               disabled={activeAnimation.isAnimating}
                             />
                           </TabsContent>
+                          {/* ram */}
                           <TabsContent value="ram">
                             <PartList
                               partType={PartType.RAM}
@@ -101,6 +106,23 @@ export default function Home() {
                               disabled={activeAnimation.isAnimating}
                             />
                           </TabsContent>
+                          <TabsContent value="motherboard">
+                            <PartList
+                              partType={PartType.MOTHERBOARD}
+                              onSelectPart={handleSelectPart}
+                              selectedPart={selectedParts[PartType.MOTHERBOARD]}
+                              disabled={activeAnimation.isAnimating}
+                            />
+                          </TabsContent>
+                          <TabsContent value="cooler">
+                            <PartList
+                              partType={PartType.COOLER}
+                              onSelectPart={handleSelectPart}
+                              selectedPart={selectedParts[PartType.COOLER]}
+                              disabled={activeAnimation.isAnimating}
+                            />
+                          </TabsContent>
+                          
                         </Tabs>
                       </CardContent>
                     </Card>

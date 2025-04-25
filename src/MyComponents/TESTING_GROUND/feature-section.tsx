@@ -91,11 +91,12 @@ export default function FeaturesSection() {
                                         <p className="text-foreground">Extended warranty coverage and 24/7 technical support for all components.</p>
                                     </div>
                                 </div>
-                                <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
+                                {/* black window apple */}
+                                <div className="rounded-tl-(--radius) border-white bg-black relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
                                     <div className="absolute left-3 top-2 flex gap-1">
-                                        <span className="block size-2 rounded-full border dark:border-white/10 dark:bg-white/10"></span>
-                                        <span className="block size-2 rounded-full border dark:border-white/10 dark:bg-white/10"></span>
-                                        <span className="block size-2 rounded-full border dark:border-white/10 dark:bg-white/10"></span>
+                                        <span className="block size-2 rounded-full border border-white/10 bg-green-300"></span>
+                                        <span className="block size-2 rounded-full border border-white/10  bg-yellow-300"></span>
+                                        <span className="block size-2 rounded-full border border-white/10 bg-red-400"></span>
                                     </div>
                                     <svg className="w-full sm:w-[150%]" viewBox="0 0 366 231" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
