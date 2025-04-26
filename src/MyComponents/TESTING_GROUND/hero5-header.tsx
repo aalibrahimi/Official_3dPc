@@ -12,7 +12,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 const menuItems = [
   { name: "Home", href: "/" },
   { name: "PCBuilder", href: "/PCBuilder" },
-  { name: "Pricing", href: "#link" },
+  { name: "Gallery", href: "/Gallery" },
   { name: "About", href: "/About" },
 ]
 
