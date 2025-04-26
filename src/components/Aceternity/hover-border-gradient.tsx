@@ -23,7 +23,7 @@ export function HoverBorderGradient({
     clockwise?: boolean;
   } & React.HTMLAttributes<HTMLElement>
 >) {
-  const [hovered, setHovered] = useState<boolean>(false);
+  const [hoveblue, setHoveblue] = useState<boolean>(false);
   const [direction, setDirection] = useState<Direction>("TOP");
 
   const rotateDirection = (currentDirection: Direction): Direction => {
@@ -48,19 +48,19 @@ export function HoverBorderGradient({
     "radial-gradient(75% 181.15942028985506% at 50% 50%, #3275F8 0%, rgba(255, 255, 255, 0) 100%)";
 
   useEffect(() => {
-    if (!hovered) {
+    if (!hoveblue) {
       const interval = setInterval(() => {
         setDirection((prevState) => rotateDirection(prevState));
       }, duration * 1000);
       return () => clearInterval(interval);
     }
-  }, [hovered]);
+  }, [hoveblue]);
   return (
     <Tag
       onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {
-        setHovered(true);
+        setHoveblue(true);
       }}
-      onMouseLeave={() => setHovered(false)}
+      onMouseLeave={() => setHoveblue(false)}
       className={cn(
         "relative flex rounded-full border  content-center bg-black/20 hover:bg-black/10 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit",
         containerClassName
@@ -87,7 +87,7 @@ export function HoverBorderGradient({
         }}
         initial={{ background: movingMap[direction] }}
         animate={{
-          background: hovered
+          background: hoveblue
             ? [movingMap[direction], highlight]
             : movingMap[direction],
         }}
