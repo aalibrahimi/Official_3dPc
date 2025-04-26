@@ -349,34 +349,38 @@ export default function BuildGalleryPage() {
   // Get unique tags from all builds
   const allTags = Array.from(new Set(BUILDS.flatMap(build => build.tags)))
 
-  const filteredBuilds = BUILDS.filter(build => {
-    const categoryMatch = selectedCategory === "all" || build.category === selectedCategory
-    const priceMatch = build.price >= priceRange[0] && build.price <= priceRange[1]
-    const searchMatch = searchQuery === "" || 
-      build.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      build.description.toLowerCase().includes(searchQuery.toLowerCase())
-    const tagMatch = selectedTags.length === 0 || 
-      selectedTags.some(tag => build.tags.includes(tag))
-    
-    return categoryMatch && priceMatch && searchMatch && tagMatch
-  }).sort((a, b) => {
-    switch (sortBy) {
-      case "popular":
-        return b.popularity - a.popularity
-      case "rating":
-        return b.rating - a.rating
-      case "price-low":
-        return a.price - b.price
-      case "price-high":
-        return b.price - a.price
-      case "recent":
-        return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
-      case "performance":
-        return b.performance.overall - a.performance.overall
-      default:
-        return 0
-    }
-  })
+// Filter builds based on multiple criteria
+const filteredBuilds = BUILDS.filter(build => {
+  const categoryMatch = selectedCategory === "all" || build.category === selectedCategory
+  const priceMatch = build.price >= priceRange[0] && build.price <= priceRange[1]
+  const searchMatch = searchQuery === "" || 
+    build.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    build.description.toLowerCase().includes(searchQuery.toLowerCase())
+  const tagMatch = selectedTags.length === 0 || 
+    selectedTags.some(tag => build.tags.includes(tag))
+  
+  // Another beautiful example of switch Case ( you can also do this in python in matters of webscraping)
+  // Build must match ALL filters to be included
+  return categoryMatch && priceMatch && searchMatch && tagMatch
+}).sort((a, b) => {
+  // Sort the filtered results based on user's selected option
+  switch (sortBy) {
+    case "popular":
+      return b.popularity - a.popularity  // Most popular first
+    case "rating":
+      return b.rating - a.rating          // Highest rated first
+    case "price-low":
+      return a.price - b.price            // Cheapest first
+    case "price-high":
+      return b.price - a.price            // Most expensive first
+    case "recent":
+      return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()  // Newest first
+    case "performance":
+      return b.performance.overall - a.performance.overall  // Best performance first
+    default:
+      return 0
+  }
+})
 
   const featuredBuilds = BUILDS.filter(build => build.featured)
 
@@ -393,10 +397,12 @@ export default function BuildGalleryPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-black to-red-950/20">
-      {/* Header Section */}
       <section className="relative pt-24 pb-12 overflow-hidden">
+        {/* Grid background pattern for visual appeal (since we like gridds so much) */}
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
+        
         <div className="relative z-10 container mx-auto px-6">
+          {/* Animated page title and description im just commenting everything so that its easier to spot the important parts */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -410,9 +416,10 @@ export default function BuildGalleryPage() {
               Explore our curated collection of PC builds for every need and budget
             </p>
           </motion.div>
-
-          {/* Search and Filter Bar */}
+  
+          {/* Search and Filter Bar - Main filtering controls */}
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+            {/* Search input field with icon */}
             <div className="relative w-full md:w-96">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input
@@ -423,7 +430,9 @@ export default function BuildGalleryPage() {
               />
             </div>
             
+            {/* Sorting and advanced filters controls */}
             <div className="flex gap-4">
+              {/* Sort dropdown menu */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="border-red-500/20">
@@ -443,7 +452,8 @@ export default function BuildGalleryPage() {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-
+  
+              {/* Advanced filters side sheet */}
               <Sheet open={showFilters} onOpenChange={setShowFilters}>
                 <SheetTrigger asChild>
                   <Button variant="outline" className="border-red-500/20">
@@ -458,7 +468,10 @@ export default function BuildGalleryPage() {
                       Refine your search with advanced filters
                     </SheetDescription>
                   </SheetHeader>
+                  
+                  {/* Filter options container */}
                   <div className="mt-6 space-y-6">
+                    {/* Price range slider filter */}
                     <div className="space-y-2">
                       <label className="text-sm text-gray-400">Price Range</label>
                       <Slider
@@ -475,6 +488,7 @@ export default function BuildGalleryPage() {
                       </div>
                     </div>
                     
+                    {/* Tags filter with checkboxes */}
                     <div className="space-y-2">
                       <label className="text-sm text-gray-400">Tags</label>
                       <div className="grid grid-cols-2 gap-2">
@@ -503,8 +517,8 @@ export default function BuildGalleryPage() {
               </Sheet>
             </div>
           </div>
-
-          {/* Category Tabs */}
+  
+          {/* Category Tabs - Main navigation for build types */}
           <div className="flex justify-center">
             <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory}>
               <TabsList className="bg-black/40 border border-red-500/20">
@@ -514,6 +528,7 @@ export default function BuildGalleryPage() {
                     value={category.id}
                     className="flex items-center gap-2"
                   >
+                    {/* Category icon and name */}
                     <category.icon className="w-4 h-4" />
                     {category.name}
                   </TabsTrigger>
@@ -523,10 +538,11 @@ export default function BuildGalleryPage() {
           </div>
         </div>
       </section>
-
-      {/* Featured Builds Section */}
+  
+      {/* Featured Builds Section - Showcases top builds, only shown on "all" category */}
       {selectedCategory === "all" && (
         <section className="container mx-auto px-6 mb-16">
+          {/* Section header with title and "View All" button */}
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold flex items-center gap-2">
               <Trophy className="w-6 h-6 text-yellow-500" />
@@ -542,6 +558,7 @@ export default function BuildGalleryPage() {
             </Button>
           </div>
           
+          {/* Featured build cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredBuilds.map((build, index) => (
               <motion.div
@@ -553,10 +570,14 @@ export default function BuildGalleryPage() {
                 onClick={() => router.push(`/Gallery/${build.id}`)}
               >
                 <Card className="bg-black/40 border-red-500/30 hover:border-red-500/50 transition-all duration-300 overflow-hidden group">
-                  {/* Image Placeholder with Gradient Overlay */}
+                  {/* Featured build card image section */}
                   <div className="relative h-48 bg-gradient-to-br from-red-950/30 to-black/50">
+                    {/* Placeholder image with opacity effect */}
                     <div className="absolute inset-0 bg-[url('/api/placeholder/400/320')] bg-cover bg-center opacity-20" />
+                    {/* Gradient overlay for better text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                    
+                    {/* Status badges (New, Featured) */}
                     <div className="absolute top-4 right-4 flex gap-2">
                       {build.new && (
                         <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/50">
@@ -567,12 +588,15 @@ export default function BuildGalleryPage() {
                         Featured
                       </Badge>
                     </div>
+                    
+                    {/* Build name and description overlay */}
                     <div className="absolute bottom-4 left-4">
                       <h3 className="text-xl font-bold text-white">{build.name}</h3>
                       <p className="text-sm text-gray-300">{build.description}</p>
                     </div>
                   </div>
-
+  
+                  {/* Featured build card content */}
                   <CardContent className="p-6">
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-3xl font-bold text-red-500">${build.price}</div>
@@ -581,7 +605,7 @@ export default function BuildGalleryPage() {
                         <span className="text-sm text-yellow-500">{build.rating}</span>
                       </div>
                     </div>
-
+  
                     <Button 
                       className="w-full bg-red-500 hover:bg-red-600"
                       onClick={() => router.push("/PCBuilder")}
@@ -595,8 +619,8 @@ export default function BuildGalleryPage() {
           </div>
         </section>
       )}
-
-      {/* Builds Grid */}
+  
+      {/* Main Builds Grid Section - Displays all filtered builds */}
       <section className="container mx-auto px-6 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredBuilds.map((build, index) => (
@@ -607,15 +631,17 @@ export default function BuildGalleryPage() {
               transition={{ delay: index * 0.1 }}
             >
               <Card className="bg-black/40 border-red-950/20 hover:border-red-500/50 transition-all duration-300 group overflow-hidden">
-                {/* Image Placeholder with Gradient Overlay */}
+                {/* Build card image header section */}
                 <div className="relative h-48 bg-gradient-to-br from-red-950/20 to-black/40">
+                  {/* Background image placeholder with low opacity */}
                   <div className="absolute inset-0 bg-[url('/api/placeholder/400/320')] bg-cover bg-center opacity-10" />
+                  {/* Grid pattern overlay for visual texture */}
                   <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
                   
-                  {/* Animated Gradient Overlay */}
+                  {/* Animated gradient overlay - changes on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent group-hover:from-red-950/80 transition-colors duration-500" />
                   
-                  {/* Quick Actions */}
+                  {/* Quick action buttons - appear on hover */}
                   <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button size="icon" variant="ghost" className="h-8 w-8 bg-black/50 hover:bg-red-500/20">
                       <Heart className="w-4 h-4" />
@@ -624,15 +650,15 @@ export default function BuildGalleryPage() {
                       <Share2 className="w-4 h-4" />
                     </Button>
                   </div>
-
-                  {/* Build Type Badge */}
+  
+                  {/* Build category badge */}
                   <div className="absolute top-4 left-4">
                     <Badge className="bg-black/50 text-white border-none">
                       {categories.find(c => c.id === build.category)?.name}
                     </Badge>
                   </div>
-
-                  {/* Performance Overlay */}
+  
+                  {/* Performance meter overlay at bottom of image */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
@@ -641,6 +667,7 @@ export default function BuildGalleryPage() {
                       </div>
                       <span className="text-sm font-bold text-red-500">{build.performance.overall}%</span>
                     </div>
+                    {/* Performance progress bar */}
                     <div className="mt-1 h-1 bg-black/50 rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-gradient-to-r from-red-500 to-red-700"
@@ -649,7 +676,8 @@ export default function BuildGalleryPage() {
                     </div>
                   </div>
                 </div>
-
+  
+                {/* Build card text content section */}
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">
                     <CardTitle className="text-xl">{build.name}</CardTitle>
@@ -657,12 +685,14 @@ export default function BuildGalleryPage() {
                       ${build.price}
                     </Badge>
                   </div>
+                  {/* Description with line-clamp to show only 1 line */}
                   <CardDescription className="line-clamp-1">{build.description}</CardDescription>
                 </CardHeader>
-
+  
+                {/* Build card specifications and actions */}
                 <CardContent>
                   <div className="space-y-4">
-                    {/* Key Specs Only */}
+                    {/* Key specs display - only CPU and GPU for cleaner look */}
                     <div className="space-y-1 text-sm">
                       <div className="flex items-center gap-2">
                         <Cpu className="w-4 h-4 text-red-500/70" />
@@ -673,8 +703,8 @@ export default function BuildGalleryPage() {
                         <span className="text-gray-300 truncate">{build.specs.gpu}</span>
                       </div>
                     </div>
-
-                    {/* Performance Metrics - Simplified */}
+  
+                    {/* Simplified performance metric display */}
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-1">
                         <BarChart2 className="w-4 h-4 text-red-500" />
@@ -682,8 +712,8 @@ export default function BuildGalleryPage() {
                       </div>
                       <span className="text-sm font-bold text-red-500">{build.performance.overall}%</span>
                     </div>
-
-                    {/* Footer Stats - Minimal */}
+  
+                    {/* Minimal footer stats */}
                     <div className="flex items-center justify-between text-sm text-gray-400 pt-2 border-t border-white/5">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
@@ -694,8 +724,8 @@ export default function BuildGalleryPage() {
                         <span>{build.popularity}%</span>
                       </div>
                     </div>
-
-                    {/* Action Buttons */}
+  
+                    {/* Action buttons for details and build */}
                     <div className="flex gap-2 pt-2">
                       <Button 
                         variant="outline" 
@@ -718,8 +748,8 @@ export default function BuildGalleryPage() {
             </motion.div>
           ))}
         </div>
-
-        {/* Empty State */}
+  
+        {/* Empty state when no builds match filters */}
         {filteredBuilds.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -746,8 +776,8 @@ export default function BuildGalleryPage() {
             </Button>
           </motion.div>
         )}
-
-        {/* Compare Bar */}
+  
+        {/* Compare bar - Fixed bottom bar when builds are selected for comparison */}
         <AnimatePresence>
           {compareBuilds.length > 0 && (
             <motion.div

@@ -18,6 +18,8 @@ import GradientText from "@/MyComponents/GradientText"
 import { motion } from "motion/react"
 import { Link } from "@/i18n/navigation"
 
+// at the moment since we don't have the supabase/database connected, I havee to manually put all the specs from gallery to here as well
+// which takes up a lot of space and is redundant as you can see here
 // Interface for a Build
 interface Build {
   id: string
