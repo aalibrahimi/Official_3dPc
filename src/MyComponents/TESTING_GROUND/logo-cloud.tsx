@@ -8,16 +8,16 @@ export default function LogoCloud() {
             <div className="group relative m-auto max-w-7xl px-6">
                 <div className="flex flex-col items-center md:flex-row">
                     <div className="md:max-w-44 md:border-r md:pr-6">
-                        <p className="text-end text-sm">Powering the best teams</p>
+                        <p className="text-end text-sm">Powered By the Best Tech Companies</p>
                     </div>
                     <div className="relative py-6 md:w-[calc(100%-11rem)]">
                         <InfiniteSlider
-                            speedOnHover={20}
-                            speed={40}
+                            speedOnHover={200}
+                            speed={80}
                             gap={112}>
-                            <div className="flex">
+                            <div className="flex justify-center items-center h-16">
                                 <img
-                                    className="mx-auto h-5 w-fit dark:invert"
+                                    className="mx-auto h-5 w-fit  dark:invert"
                                     src="https://html.tailus.io/blocks/customers/nvidia.svg"
                                     alt="Nvidia Logo"
                                     height="20"
@@ -25,66 +25,66 @@ export default function LogoCloud() {
                                 />
                             </div>
 
-                            <div className="flex">
+                            <div className="flex justify-center items-center">
                                 <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/column.svg"
-                                    alt="Column Logo"
-                                    height="16"
+                                    className="mx-auto  h-16 dark:invert "
+                                    src="/Alienware.jpg"
+                                    alt="Alienware Logo"
+                                    height="100"
                                     width="auto"
                                 />
                             </div>
-                            <div className="flex">
+                            <div className="flex justify-center items-center">
                                 <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/github.svg"
+                                    className="mx-auto  h-16 w-fit dark:invert"
+                                    src="github.jpeg"
                                     alt="GitHub Logo"
                                     height="16"
                                     width="auto"
                                 />
                             </div>
-                            <div className="flex">
+                            <div className="flex justify-center items-center">
                                 <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nike.svg"
-                                    alt="Nike Logo"
+                                    className="mx-auto h-10 w-fit dark:invert"
+                                    src="/intel.png"
+                                    alt="Intel-Logo"
                                     height="20"
                                     width="auto"
                                 />
                             </div>
-                            <div className="flex">
+                            <div className="flex justify-center items-center">
                                 <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                    alt="Lemon Squeezy Logo"
+                                    className="mx-auto  h-10 w-fit dark:invert"
+                                    src="/amd.jpg"
+                                    alt="AMD-Logo"
                                     height="20"
                                     width="auto"
                                 />
                             </div>
-                            <div className="flex">
+                            <div className="flex justify-center items-center">
                                 <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                    alt="Laravel Logo"
+                                    className="mx-auto  h-16 w-fit dark:invert"
+                                    src="/Corsair.png"
+                                    alt="Corsair-Logo"
                                     height="16"
                                     width="auto"
                                 />
                             </div>
-                            <div className="flex">
+                            <div className="flex justify-center items-center">
                                 <img
-                                    className="mx-auto h-7 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                    alt="Lilly Logo"
+                                    className="mx-auto  h-16  w-fit "
+                                    src="/acer.jpg"
+                                    alt="Acer Logo"
                                     height="28"
                                     width="auto"
                                 />
                             </div>
 
-                            <div className="flex">
+                            <div className="flex justify-center items-center ">
                                 <img
-                                    className="mx-auto h-6 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/openai.svg"
-                                    alt="OpenAI Logo"
+                                    className="mx-auto  h-16 w-fit"
+                                    src="/asus.jpg"
+                                    alt="Asus Logo"
                                     height="24"
                                     width="auto"
                                 />
