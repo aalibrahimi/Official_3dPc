@@ -10,6 +10,7 @@ export const enum PartType {
 }
 
 export interface Part {
+  // [index: string]: any;
   readonly id: string;
   name: string;
   // type: PartType;

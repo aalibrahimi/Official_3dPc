@@ -26,7 +26,7 @@ export default function LogoCloud() {
               <div className="flex justify-center items-center">
                 <img
                   className="mx-auto  h-16 dark:invert "
-                  src="/Alienware.jpg"
+                  src="/Alienware2.png"
                   alt="Alienware Logo"
                   height="100"
                   width="auto"
@@ -35,7 +35,7 @@ export default function LogoCloud() {
               <div className="flex justify-center items-center">
                 <img
                   className="mx-auto  h-16 w-fit dark:invert"
-                  src="github.jpeg"
+                  src="/github2.png"
                   alt="GitHub Logo"
                   height="16"
                   width="auto"
@@ -53,7 +53,7 @@ export default function LogoCloud() {
               <div className="flex justify-center items-center">
                 <img
                   className="mx-auto  h-10 w-fit dark:invert"
-                  src="/amd.jpg"
+                  src="/amd2.png"
                   alt="AMD-Logo"
                   height="20"
                   width="auto"
@@ -71,7 +71,7 @@ export default function LogoCloud() {
               <div className="flex justify-center items-center">
                 <img
                   className="mx-auto h-16 w-fit "
-                  src="/acer.jpg"
+                  src="/acer2.png"
                   alt="Acer Logo"
                   height="28"
                   width="auto"
@@ -81,7 +81,7 @@ export default function LogoCloud() {
               <div className="flex justify-center items-center ">
                 <img
                   className="mx-auto  h-16 w-fit"
-                  src="/asus.jpg"
+                  src="/asus2.png"
                   alt="Asus Logo"
                   height="24"
                   width="auto"
