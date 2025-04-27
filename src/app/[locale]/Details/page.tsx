@@ -40,6 +40,7 @@ import {
 import GradientText from "@/MyComponents/GradientText";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
+import PerformanceChart from "@/MyComponents/PerformanceChart";
 
 // at the moment since we don't have the supabase/database connected, I havee to manually put all the specs from gallery to here as well
 // which takes up a lot of space and is blueundant as you can see here
@@ -675,107 +676,11 @@ export default function BuildDetailPage() {
                 <CardHeader>
                   <CardTitle>Performance Metrics</CardTitle>
                   <CardDescription>
-                    Expected performance in various applications
+                    Comprehensive performance analysis across various use cases
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-8">
-                    {/* Gaming Performance */}
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <Gamepad2 className="w-5 h-5 text-blue-500" />
-                          <h3 className="font-semibold">Gaming Performance</h3>
-                        </div>
-                        <span className="text-2xl font-bold text-blue-500">
-                          {build.performance.gaming}%
-                        </span>
-                      </div>
-                      <div className="h-4 bg-black/40 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"
-                          style={{ width: `${build.performance.gaming}%` }}
-                        />
-                      </div>
-                      <p className="mt-2 text-sm text-gray-400">
-                        Excellent for 4K gaming at ultra settings with ray
-                        tracing enabled
-                      </p>
-                    </div>
-
-                    {/* Productivity Performance */}
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <Briefcase className="w-5 h-5 text-blue-500" />
-                          <h3 className="font-semibold">
-                            Productivity Performance
-                          </h3>
-                        </div>
-                        <span className="text-2xl font-bold text-blue-500">
-                          {build.performance.productivity}%
-                        </span>
-                      </div>
-                      <div className="h-4 bg-black/40 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"
-                          style={{
-                            width: `${build.performance.productivity}%`,
-                          }}
-                        />
-                      </div>
-                      <p className="mt-2 text-sm text-gray-400">
-                        Handles heavy multitasking, development, and
-                        professional applications with ease
-                      </p>
-                    </div>
-
-                    {/* Creative Performance */}
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <Palette className="w-5 h-5 text-purple-500" />
-                          <h3 className="font-semibold">Creator Performance</h3>
-                        </div>
-                        <span className="text-2xl font-bold text-purple-500">
-                          {build.performance.creator}%
-                        </span>
-                      </div>
-                      <div className="h-4 bg-black/40 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full"
-                          style={{ width: `${build.performance.creator}%` }}
-                        />
-                      </div>
-                      <p className="mt-2 text-sm text-gray-400">
-                        Perfect for 4K/8K video editing, 3D rendering, and
-                        content creation workflows
-                      </p>
-                    </div>
-
-                    {/* Overall Performance */}
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <BarChart2 className="w-5 h-5 text-green-500" />
-                          <h3 className="font-semibold">Overall Performance</h3>
-                        </div>
-                        <span className="text-2xl font-bold text-green-500">
-                          {build.performance.overall}%
-                        </span>
-                      </div>
-                      <div className="h-4 bg-black/40 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-green-500 to-green-700 rounded-full"
-                          style={{ width: `${build.performance.overall}%` }}
-                        />
-                      </div>
-                      <p className="mt-2 text-sm text-gray-400">
-                        Top-tier performance across all categories, a truly
-                        versatile system
-                      </p>
-                    </div>
-                  </div>
+                  <PerformanceChart performance={build.performance} />
                 </CardContent>
               </Card>
             </motion.div>
