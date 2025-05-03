@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PartList from "@/MyComponents/PC/part-list";
-import { PartType, type Part } from "@/lib/types";
+import { CPUPart, cpuParts, PartType, type Part } from "@/lib/types";
 import PCBuilder from "@/MyComponents/PC/pc-builder";
+import CPUPicker from "@/MyComponents/PC/cpu-picker";
 
 export default function Home() {
   const [selectedParts, setSelectedParts] = useState<
@@ -28,7 +29,16 @@ export default function Home() {
     isAnimating: false,
   });
 
+
+
+  const [searchQuery, setSearchQuery] = useState('')
+  const [FilteredCPUs, setFilteredCPUs] = useState<CPUPart[]>([])
+  const filteredCPUs = useMemo(() => {
+    if (!searchQuery.trim()) return cpuParts;
+    return cpuParts.filter(cpu => cpu.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  }, [searchQuery])
   const handleSelectPart = (part: Part) => {
+
     setActiveAnimation({
       partType: part.type,
       isAnimating: true,
@@ -48,116 +58,138 @@ export default function Home() {
     }, 2000); // Animation duration
   };
 
+  // return (
+  //   <div className="min-h-screen bg-gradient-to-b mt-20 from-black via-black to-black text-foreground">
+  //     <header className="container mx-auto py-6">
+  //       <h1 className="text-4xl font-bold tracking-tight">
+  //         <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
+  //           Quantum PC Builder
+  //         </span>
+  //       </h1>
+  //       <p className="text-muted-foreground mt-2">
+  //         Build your dream PC with our interactive 3D part picker
+  //       </p>
+  //     </header>
+
+  //     <div className="container mx-auto py-6">
+  //       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  //         <Card className="lg:col-span-2 overflow-hidden border border-blue-500/20 bg-black/40 backdrop-blur-sm">
+  //           <CardContent className="p-0">
+  //             <div className="h-[600px] w-full">
+  //               <PCBuilder
+  //                 selectedParts={selectedParts}
+  //                 activeAnimation={activeAnimation}
+  //               />
+  //             </div>
+  //           </CardContent>
+  //         </Card>
+
+  //         <div className="space-y-4">
+  //           <Card className="border border-blue-500/20 bg-black backdrop-blur-sm">
+  //             <CardContent className="p-4">
+  //               cpu
+  //               <Tabs defaultValue="cpu" className="w-full ">
+  //                 <TabsList className="grid grid-cols-5 mb-4 bg-black">
+  //                   <TabsTrigger value="cpu">CPU</TabsTrigger>
+  //                   <TabsTrigger value="gpu">GPU</TabsTrigger>
+  //                   <TabsTrigger value="ram">RAM</TabsTrigger>
+  //                   <TabsTrigger value="motherboard">MOTHERBOARD</TabsTrigger>
+  //                   <TabsTrigger value="cooler">COOLER</TabsTrigger>
+  //                 </TabsList>
+  //                 <TabsContent value="cpu">
+  //                   <PartList
+  //                     partType={PartType.CPU}
+  //                     onSelectPart={handleSelectPart}
+  //                     selectedPart={selectedParts[PartType.CPU]}
+  //                     disabled={activeAnimation.isAnimating}
+  //                   />
+  //                 </TabsContent>
+  //                 gpu
+  //                 <TabsContent value="gpu">
+  //                   <PartList
+  //                     partType={PartType.GPU}
+  //                     onSelectPart={handleSelectPart}
+  //                     selectedPart={selectedParts[PartType.GPU]}
+  //                     disabled={activeAnimation.isAnimating}
+  //                   />
+  //                 </TabsContent>
+  //                 ram
+  //                 <TabsContent value="ram">
+  //                   <PartList
+  //                     partType={PartType.RAM}
+  //                     onSelectPart={handleSelectPart}
+  //                     selectedPart={selectedParts[PartType.RAM]}
+  //                     disabled={activeAnimation.isAnimating}
+  //                   />
+  //                 </TabsContent>
+  //                 <TabsContent value="motherboard">
+  //                   <PartList
+  //                     partType={PartType.MOTHERBOARD}
+  //                     onSelectPart={handleSelectPart}
+  //                     selectedPart={selectedParts[PartType.MOTHERBOARD]}
+  //                     disabled={activeAnimation.isAnimating}
+  //                   />
+  //                 </TabsContent>
+  //                 <TabsContent value="cooler">
+  //                   <PartList
+  //                     partType={PartType.COOLER}
+  //                     onSelectPart={handleSelectPart}
+  //                     selectedPart={selectedParts[PartType.COOLER]}
+  //                     disabled={activeAnimation.isAnimating}
+  //                   />
+  //                 </TabsContent>
+  //               </Tabs>
+  //             </CardContent>
+  //           </Card>
+
+  //           <Card className="border border-blue-500/20 bg-black/40 backdrop-blur-sm">
+  //             <CardContent className="p-4">
+  //               <h3 className="text-lg font-medium mb-2">
+  //                 Selected Components
+  //               </h3>
+  //               <div className="space-y-2">
+  //                 {Object.entries(selectedParts).map(([type, part]) => (
+  //                   <div
+  //                     key={type}
+  //                     className="flex justify-between items-center"
+  //                   >
+  //                     <span className="text-muted-foreground">{type}:</span>
+  //                     <span className="font-medium">
+  //                       {part ? part.name : "Not selected"}
+  //                     </span>
+  //                   </div>
+  //                 ))}
+  //               </div>
+  //               <Button className="w-full mt-4 bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950">
+  //                 Complete Build
+  //               </Button>
+  //             </CardContent>
+  //           </Card>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="min-h-screen bg-gradient-to-b mt-20 from-black via-black to-black text-foreground">
-      <header className="container mx-auto py-6">
-        <h1 className="text-4xl font-bold tracking-tight">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
-            Quantum PC Builder
-          </span>
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          Build your dream PC with our interactive 3D part picker
-        </p>
-      </header>
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b mt-20 from-black via-black to-black text-foreground">
+      {/* Header */}
+      <section className="">
+        <h3>Build Your PC</h3>
+        <p>Start by Choosing your parts below!</p>
+      </section>
 
-      <main className="container mx-auto py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <Card className="lg:col-span-2 overflow-hidden border border-blue-500/20 bg-black/40 backdrop-blur-sm">
-            <CardContent className="p-0">
-              <div className="h-[600px] w-full">
-                <PCBuilder
-                  selectedParts={selectedParts}
-                  activeAnimation={activeAnimation}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-4">
-            <Card className="border border-blue-500/20 bg-black backdrop-blur-sm">
-              <CardContent className="p-4">
-                {/* cpu */}
-                <Tabs defaultValue="cpu" className="w-full ">
-                  <TabsList className="grid grid-cols-5 mb-4 bg-black">
-                    <TabsTrigger value="cpu">CPU</TabsTrigger>
-                    <TabsTrigger value="gpu">GPU</TabsTrigger>
-                    <TabsTrigger value="ram">RAM</TabsTrigger>
-                    <TabsTrigger value="motherboard">MOTHERBOARD</TabsTrigger>
-                    <TabsTrigger value="cooler">COOLER</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="cpu">
-                    <PartList
-                      partType={PartType.CPU}
-                      onSelectPart={handleSelectPart}
-                      selectedPart={selectedParts[PartType.CPU]}
-                      disabled={activeAnimation.isAnimating}
-                    />
-                  </TabsContent>
-                  {/* gpu */}
-                  <TabsContent value="gpu">
-                    <PartList
-                      partType={PartType.GPU}
-                      onSelectPart={handleSelectPart}
-                      selectedPart={selectedParts[PartType.GPU]}
-                      disabled={activeAnimation.isAnimating}
-                    />
-                  </TabsContent>
-                  {/* ram */}
-                  <TabsContent value="ram">
-                    <PartList
-                      partType={PartType.RAM}
-                      onSelectPart={handleSelectPart}
-                      selectedPart={selectedParts[PartType.RAM]}
-                      disabled={activeAnimation.isAnimating}
-                    />
-                  </TabsContent>
-                  <TabsContent value="motherboard">
-                    <PartList
-                      partType={PartType.MOTHERBOARD}
-                      onSelectPart={handleSelectPart}
-                      selectedPart={selectedParts[PartType.MOTHERBOARD]}
-                      disabled={activeAnimation.isAnimating}
-                    />
-                  </TabsContent>
-                  <TabsContent value="cooler">
-                    <PartList
-                      partType={PartType.COOLER}
-                      onSelectPart={handleSelectPart}
-                      selectedPart={selectedParts[PartType.COOLER]}
-                      disabled={activeAnimation.isAnimating}
-                    />
-                  </TabsContent>
-                </Tabs>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-blue-500/20 bg-black/40 backdrop-blur-sm">
-              <CardContent className="p-4">
-                <h3 className="text-lg font-medium mb-2">
-                  Selected Components
-                </h3>
-                <div className="space-y-2">
-                  {Object.entries(selectedParts).map(([type, part]) => (
-                    <div
-                      key={type}
-                      className="flex justify-between items-center"
-                    >
-                      <span className="text-muted-foreground">{type}:</span>
-                      <span className="font-medium">
-                        {part ? part.name : "Not selected"}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <Button className="w-full mt-4 bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950">
-                  Complete Build
-                </Button>
-              </CardContent>
-            </Card>
+      {/* Start -- CPU Pick */}
+      <CPUPicker cpus={cpuParts} onResults={(results) => setFilteredCPUs(results)} />
+      <div className="">
+        {filteredCPUs.map(cpu => (
+          <div className="" key={cpu.id}>
+            <h3>{cpu.id}</h3>
+            <p>{cpu.name}</p>
+            <p>{cpu.type}</p>
+            <p>{cpu.price}</p>
           </div>
-        </div>
-      </main>
+        ))}
+      </div>
     </div>
-  );
+  )
 }

@@ -22,7 +22,7 @@ export interface Part {
 
 // With the following extentions, I made it so only that type can be assigned to the part.
 // So only "CPU" type can be assigned to CPU parts
-interface CPUPart extends Part {
+export interface CPUPart extends Part {
   readonly type: "CPU";
 }
 
@@ -48,7 +48,7 @@ interface COOLERPart extends Part {
 
 // here is the mock data you can play around with until we use kohis inventory
 
-const cpuParts: CPUPart[] = [
+export const cpuParts: CPUPart[] = [
   // speed running so literally changing only name on id by 1 and name by 1
   {
     id: "cpu-1",

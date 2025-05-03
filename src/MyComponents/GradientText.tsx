@@ -13,7 +13,7 @@ const GradientText = ({
 }: GradientTextType) => {
   if (styleOverwrite) {
     return (
-      <div
+      <span
         className={
           gradient
             ? `inline-block ${styleOverwrite}`
@@ -21,11 +21,11 @@ const GradientText = ({
         }
       >
         {children}
-      </div>
+      </span>
     );
   } else {
     return (
-      <div
+      <span
         className={
           gradient
             ? `inline-block bg-gradient-to-r ${gradient} bg-clip-text text-transparent font-bold`
@@ -33,7 +33,7 @@ const GradientText = ({
         }
       >
         {children}
-      </div>
+      </span>
     );
   }
 };
